@@ -5,8 +5,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -17,6 +19,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -31,7 +34,7 @@ public class test {
         // compareButton.setPreferredSize(new Dimension(200,90));
         compareButton.setBorder(BorderFactory.createEtchedBorder());
         compareButton.setText("Compare Hands");
-        compareButton.setFont(new Font("STSong",Font.BOLD, 15));
+        compareButton.setFont(new Font("Inter",Font.BOLD, 15));
         int buttonWidth = 80;
         int buttonHeight = 20;
         compareButton.setBounds(new Rectangle((width - buttonWidth)/2, (height - buttonHeight)/2, buttonWidth, buttonHeight));
@@ -45,14 +48,14 @@ public class test {
         // Label for hand 1
         JLabel leftLabel = new JLabel();
         leftLabel.setText("Hand 1");
-        leftLabel.setFont(new Font("STSong",Font.BOLD, 15));
+        leftLabel.setFont(new Font("Inter",Font.BOLD, 15));
         leftLabel.setHorizontalTextPosition(JLabel.CENTER);
         leftLabel.setForeground(Color.WHITE);
 
         // Label for hand 2
         JLabel rightLabel = new JLabel();
         rightLabel.setText("Hand 2");
-        rightLabel.setFont(new Font("STSong",Font.BOLD, 15));
+        rightLabel.setFont(new Font("Inter",Font.BOLD, 15));
         rightLabel.setHorizontalTextPosition(JLabel.CENTER);
         rightLabel.setForeground(Color.WHITE);
 
@@ -127,8 +130,6 @@ public class test {
         leftfirstTextfield.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e){
                 if (e.getKeyCode() == KeyEvent.VK_ENTER){
-                    String firstleftcard = leftfirstTextfield.getText();
-                    System.out.println(firstleftcard);
                     leftsecondTextfield.requestFocusInWindow();
                 }
             }
@@ -137,8 +138,6 @@ public class test {
         leftsecondTextfield.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e){
                 if (e.getKeyCode() == KeyEvent.VK_ENTER){
-                    String secondleftcard = leftsecondTextfield.getText();
-                    System.out.println(secondleftcard);
                     leftthirdTextfield.requestFocusInWindow();
                 }
             }
@@ -147,8 +146,6 @@ public class test {
         leftthirdTextfield.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e){
                 if (e.getKeyCode() == KeyEvent.VK_ENTER){
-                    String thirdleftcard = leftthirdTextfield.getText();
-                    System.out.println(thirdleftcard);
                     leftfourthTextfield.requestFocusInWindow();
                 }
             }
@@ -157,21 +154,59 @@ public class test {
         leftfourthTextfield.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e){
                 if (e.getKeyCode() == KeyEvent.VK_ENTER){
-                    String fourthleftcard = leftfourthTextfield.getText();
-                    System.out.println(fourthleftcard);
                     leftfifthTextfield.requestFocusInWindow();
                 }
             }
         });
 
-        leftfifthTextfield.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent e){
-                if (e.getKeyCode() == KeyEvent.VK_ENTER){
+
+
+        // Create Button
+        LineBorder line = new LineBorder(Color.WHITE, 2, true);
+        JButton leftButton = new JButton("Get category");
+        leftButton.setPreferredSize(new Dimension(150,30));
+        leftButton.setFont(new Font("Inter",Font.PLAIN, 15));
+        leftButton.setFocusable(false);
+        leftButton.setFocusPainted(false);
+        // leftButton.setBorderPainted(false);
+        leftButton.setBackground(new Color(24,160,251));
+        leftButton.setForeground(Color.WHITE);
+        leftButton.setBorder(BorderFactory.createEmptyBorder());
+        leftButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                if (e.getSource() == leftButton){
+                    String firstleftcard = leftfirstTextfield.getText();
+                    String secondleftcard = leftsecondTextfield.getText();
+                    String thirdleftcard = leftthirdTextfield.getText();
+                    String fourthleftcard = leftfourthTextfield.getText();
                     String fifthleftcard = leftfifthTextfield.getText();
-                    System.out.println(fifthleftcard);
+                    String[] leftDeck = {firstleftcard, secondleftcard, thirdleftcard, fourthleftcard, fifthleftcard};
+                    outerloop: // nested loop break
+                    for (int i = 0; i < leftDeck.length; i++){
+                        for (int j = i+1; j < leftDeck.length; j++){
+                            // Check if the inputs are cards
+                            if ((!leftDeck[i].matches("[2-9JQKA][HDCS]") && !leftDeck[i].matches("10[HDCS]"))
+                            || (!leftDeck[j].matches("[2-9JQKA][HDCS]") && !leftDeck[j].matches("10[HDCS]"))){
+                                JOptionPane.showMessageDialog(null, "Invalid card! Enter again.", "Invalid Input", JOptionPane.INFORMATION_MESSAGE);
+                                break outerloop;
+                            }
+                            // Check for enough inputs
+                            else if (leftDeck[i].equals("")||leftDeck[j].equals("")){
+                                JOptionPane.showMessageDialog(null, "Not enough cards! Enter again.", "Invalid Input", JOptionPane.INFORMATION_MESSAGE);
+                                break outerloop;
+                            }
+                            // Check for duplicates
+                            else if (leftDeck[i].equals(leftDeck[j])){
+                                JOptionPane.showMessageDialog(null, "Hand has duplicate cards! Enter again.", "Invalid Input", JOptionPane.INFORMATION_MESSAGE);
+                                break outerloop;
+                            }
+                        }
+                    }
                 }
             }
         });
+        fifthleftPanel.add(leftButton);
+
 
         // Create GUI frame
         JFrame frame = new JFrame();
