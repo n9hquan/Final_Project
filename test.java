@@ -76,7 +76,7 @@ public class test {
         JPanel toprightPanel = new JPanel(new GridBagLayout());
         toprightPanel.setPreferredSize(new Dimension(100,100));
         toprightPanel.setBackground(Color.BLACK);
-        GridBagConstraints constraints = new GridBagConstraints();
+        // GridBagConstraints constraints = new GridBagConstraints();
 
         JPanel secondleftPanel = new JPanel(new BorderLayout());
         secondleftPanel.setPreferredSize(new Dimension(100, 100));
@@ -100,7 +100,30 @@ public class test {
         fifthleftPanel.setPreferredSize(new Dimension(100, 100));
         fifthleftPanel.setBackground(Color.BLACK);
 
-        // Create Text Field
+        // Create right Panels
+        JPanel secondrightPanel = new JPanel(new BorderLayout());
+        secondrightPanel.setPreferredSize(new Dimension(100, 100));
+        JPanel topsecondrightPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 50, 10));
+        topsecondrightPanel.setPreferredSize(new Dimension(100,100));
+        topsecondrightPanel.setBackground(Color.BLACK);
+
+        JPanel thirdrightPanel = new JPanel(new BorderLayout());
+        thirdrightPanel.setPreferredSize(new Dimension(100,100));
+        JPanel topthirdrightPanel = new JPanel();
+        topthirdrightPanel.setPreferredSize(new Dimension(300, 300));
+        topthirdrightPanel.setBackground(Color.BLACK);
+
+        JPanel fourthrightPanel = new JPanel(new BorderLayout());
+        fourthrightPanel.setPreferredSize(new Dimension(50,50));
+        JPanel topfourthrightPanel = new JPanel();
+        topfourthrightPanel.setPreferredSize(new Dimension(50, 50));
+        topfourthrightPanel.setBackground(Color.BLACK);
+
+        JPanel fifthrightPanel = new JPanel();
+        fifthrightPanel.setPreferredSize(new Dimension(100, 100));
+        fifthrightPanel.setBackground(Color.BLACK);
+
+        // Create Text Field Left side
         JTextField leftfirstTextfield = new JTextField();
         leftfirstTextfield.setPreferredSize(new Dimension(50,20));
         leftfirstTextfield.setBorder(BorderFactory.createEmptyBorder());
@@ -126,7 +149,33 @@ public class test {
         leftfifthTextfield.setBorder(BorderFactory.createEmptyBorder());
         leftfifthTextfield.setHorizontalAlignment(JTextField.CENTER);
 
-        // Get input through ENTER and the cursor jumps to the next Text field
+        // Create Text Field Right side
+        JTextField rightfirstTextfield = new JTextField();
+        rightfirstTextfield.setPreferredSize(new Dimension(50,20));
+        rightfirstTextfield.setBorder(BorderFactory.createEmptyBorder());
+        rightfirstTextfield.setHorizontalAlignment(JTextField.CENTER);
+        
+        JTextField rightsecondTextfield = new JTextField();
+        rightsecondTextfield.setPreferredSize(new Dimension(50,20));
+        rightsecondTextfield.setBorder(BorderFactory.createEmptyBorder());
+        rightsecondTextfield.setHorizontalAlignment(JTextField.CENTER);
+        
+        JTextField rightthirdTextfield = new JTextField();
+        rightthirdTextfield.setPreferredSize(new Dimension(50,20));
+        rightthirdTextfield.setBorder(BorderFactory.createEmptyBorder());
+        rightthirdTextfield.setHorizontalAlignment(JTextField.CENTER);
+        
+        JTextField rightfourthTextfield = new JTextField();
+        rightfourthTextfield.setPreferredSize(new Dimension(50,20));
+        rightfourthTextfield.setBorder(BorderFactory.createEmptyBorder());
+        rightfourthTextfield.setHorizontalAlignment(JTextField.CENTER);
+        
+        JTextField rightfifthTextfield = new JTextField();
+        rightfifthTextfield.setPreferredSize(new Dimension(50,20));
+        rightfifthTextfield.setBorder(BorderFactory.createEmptyBorder());
+        rightfifthTextfield.setHorizontalAlignment(JTextField.CENTER);
+
+        // Get input through ENTER and the cursor jumps to the next Text field left side
         leftfirstTextfield.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e){
                 if (e.getKeyCode() == KeyEvent.VK_ENTER){
@@ -159,10 +208,41 @@ public class test {
             }
         });
 
+        // Get input through ENTER and the cursor jumps to the next Text field right side
+        rightfirstTextfield.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e){
+                if (e.getKeyCode() == KeyEvent.VK_ENTER){
+                    rightsecondTextfield.requestFocusInWindow();
+                }
+            }
+        });
+        
+        rightsecondTextfield.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e){
+                if (e.getKeyCode() == KeyEvent.VK_ENTER){
+                    rightthirdTextfield.requestFocusInWindow();
+                }
+            }
+        });
+        
+        rightthirdTextfield.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e){
+                if (e.getKeyCode() == KeyEvent.VK_ENTER){
+                    rightfourthTextfield.requestFocusInWindow();
+                }
+            }
+        });
+        
+        rightfourthTextfield.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e){
+                if (e.getKeyCode() == KeyEvent.VK_ENTER){
+                    rightfifthTextfield.requestFocusInWindow();
+                }
+            }
+        });
+        
 
-
-        // Create Button
-        LineBorder line = new LineBorder(Color.WHITE, 2, true);
+        // Create Button left side
         JButton leftButton = new JButton("Get category");
         leftButton.setPreferredSize(new Dimension(150,30));
         leftButton.setFont(new Font("Inter",Font.PLAIN, 15));
@@ -181,6 +261,7 @@ public class test {
                     String fourthleftcard = leftfourthTextfield.getText();
                     String fifthleftcard = leftfifthTextfield.getText();
                     String[] leftDeck = {firstleftcard, secondleftcard, thirdleftcard, fourthleftcard, fifthleftcard};
+                    Poker_hand_hw2 left_hand = new Poker_hand_hw2(leftDeck);
                     outerloop: // nested loop break
                     for (int i = 0; i < leftDeck.length; i++){
                         for (int j = i+1; j < leftDeck.length; j++){
@@ -200,12 +281,64 @@ public class test {
                                 JOptionPane.showMessageDialog(null, "Hand has duplicate cards! Enter again.", "Invalid Input", JOptionPane.INFORMATION_MESSAGE);
                                 break outerloop;
                             }
+                            else {
+                                System.out.println(left_hand.get_category());
+                            }
                         }
                     }
                 }
             }
         });
         fifthleftPanel.add(leftButton);
+
+        // Create Button right side
+        JButton rightButton = new JButton("Get category");
+        rightButton.setPreferredSize(new Dimension(150,30));
+        rightButton.setFont(new Font("Inter",Font.PLAIN, 15));
+        rightButton.setFocusable(false);
+        rightButton.setFocusPainted(false);
+        // rightButton.setBorderPainted(false);
+        rightButton.setBackground(new Color(24,160,251));
+        rightButton.setForeground(Color.WHITE);
+        rightButton.setBorder(BorderFactory.createEmptyBorder());
+        rightButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                if (e.getSource() == rightButton){
+                    String firstrightcard = rightfirstTextfield.getText();
+                    String secondrightcard = rightsecondTextfield.getText();
+                    String thirdrightcard = rightthirdTextfield.getText();
+                    String fourthrightcard = rightfourthTextfield.getText();
+                    String fifthrightcard = rightfifthTextfield.getText();
+                    String[] rightDeck = {firstrightcard, secondrightcard, thirdrightcard, fourthrightcard, fifthrightcard};
+                    Poker_hand_hw2 right_hand = new Poker_hand_hw2(rightDeck);
+                    outerloop: // nested loop break
+                    for (int i = 0; i < rightDeck.length; i++){
+                        for (int j = i+1; j < rightDeck.length; j++){
+                            // Check if the inputs are cards
+                            if ((!rightDeck[i].matches("[2-9JQKA][HDCS]") && !rightDeck[i].matches("10[HDCS]"))
+                            || (!rightDeck[j].matches("[2-9JQKA][HDCS]") && !rightDeck[j].matches("10[HDCS]"))){
+                                JOptionPane.showMessageDialog(null, "Invalid card! Enter again.", "Invalid Input", JOptionPane.INFORMATION_MESSAGE);
+                                break outerloop;
+                            }
+                            // Check for enough inputs
+                            else if (rightDeck[i].equals("")||rightDeck[j].equals("")){
+                                JOptionPane.showMessageDialog(null, "Not enough cards! Enter again.", "Invalid Input", JOptionPane.INFORMATION_MESSAGE);
+                                break outerloop;
+                            }
+                            // Check for duplicates
+                            else if (rightDeck[i].equals(rightDeck[j])){
+                                JOptionPane.showMessageDialog(null, "Hand has duplicate cards! Enter again.", "Invalid Input", JOptionPane.INFORMATION_MESSAGE);
+                                break outerloop;
+                            }
+                            else {
+                                System.out.println(right_hand.get_category());
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        fifthrightPanel.add(rightButton);
 
 
         // Create GUI frame
@@ -237,10 +370,24 @@ public class test {
         fourthleftPanel.add(topfourthleftPanel, BorderLayout.NORTH);
         fourthleftPanel.add(fifthleftPanel);
 
+        rightPanel.add(secondrightPanel);
+        secondrightPanel.add(topsecondrightPanel, BorderLayout.NORTH);
+        secondrightPanel.add(thirdrightPanel);
+        thirdrightPanel.add(topthirdrightPanel, BorderLayout.NORTH);
+        thirdrightPanel.add(fourthrightPanel);
+        fourthrightPanel.add(topfourthrightPanel, BorderLayout.NORTH);
+        fourthrightPanel.add(fifthrightPanel);
+
         topsecondleftPanel.add(leftfirstTextfield);
         topsecondleftPanel.add(leftsecondTextfield);
         topsecondleftPanel.add(leftthirdTextfield);
         topsecondleftPanel.add(leftfourthTextfield);
         topsecondleftPanel.add(leftfifthTextfield);
+
+        topsecondrightPanel.add(rightfirstTextfield);
+        topsecondrightPanel.add(rightsecondTextfield);
+        topsecondrightPanel.add(rightthirdTextfield);
+        topsecondrightPanel.add(rightfourthTextfield);
+        topsecondrightPanel.add(rightfifthTextfield);
     }
 }
