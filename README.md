@@ -6,7 +6,7 @@ Welcome to Poker Hand Trainer, a fun and interactive game designed to help you m
 
 ### Enter your cards:
 
-- You can manually enter the five cards (e.g., "AD Jh 7c 3s 2h") for each hand (H, D, C, S for hearts, diamonds, clubs and spades).
+- You can manually enter the five cards (e.g., "AD JH 7C 3D 2H") for each hand (H, D, C, S for hearts, diamonds, clubs and spades).
 - Or Click the "Random" button next to each hand to have the cards shuffled automatically.
 
 ### Test your knowledge:
