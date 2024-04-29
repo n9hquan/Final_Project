@@ -1,4 +1,3 @@
-package Final_Project;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;

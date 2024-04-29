@@ -1,8 +1,6 @@
 // package Homework.Homework1_2;
 // package com.gradescope.cs201;
 
-package Final_Project;
-
 public class Poker_hand_hw2 {
 
     private int[] cardsNum = new int[5];
@@ -109,83 +107,65 @@ public class Poker_hand_hw2 {
         }
         // 1: High card
         else {
-            String test = convert(cardsNum[4],cardsSuit[4]);
-            return "High card: "+ test;
+            String test = convert(cardsNum[4], cardsSuit[4]);
+            return "High card: " + test;
         }
 
     }
-    public String convert(int cardsNum, int cardSuit){
-        if (cardsNum<11){
-            if (cardSuit==1){
-                return String.valueOf(cardsNum)+"H";
+
+    public String convert(int cardsNum, int cardSuit) {
+        if (cardsNum < 11) {
+            if (cardSuit == 1) {
+                return String.valueOf(cardsNum) + "H";
+            } else if (cardSuit == 2) {
+                return String.valueOf(cardsNum) + "D";
+            } else if (cardSuit == 3) {
+                return String.valueOf(cardsNum) + "C";
+            } else if (cardSuit == 4) {
+                return String.valueOf(cardsNum) + "S";
             }
-            else if (cardSuit==2){
-                return String.valueOf(cardsNum)+"D";
-            }
-            else if (cardSuit==3){
-                return String.valueOf(cardsNum)+"C";
-            }
-            else if (cardSuit==4){
-                return String.valueOf(cardsNum)+"S";
-            }
-        }
-        else if (cardsNum==11){
-            if (cardSuit==1){
+        } else if (cardsNum == 11) {
+            if (cardSuit == 1) {
                 return "JH";
-            }
-            else if (cardSuit==2){
+            } else if (cardSuit == 2) {
                 return "JD";
-            }
-            else if (cardSuit==3){
+            } else if (cardSuit == 3) {
                 return "JC";
-            }
-            else if (cardSuit==4){
+            } else if (cardSuit == 4) {
                 return "JS";
             }
-        }
-        else if (cardsNum==12){
-            if (cardSuit==1){
+        } else if (cardsNum == 12) {
+            if (cardSuit == 1) {
                 return "QH";
-            }
-            else if (cardSuit==2){
+            } else if (cardSuit == 2) {
                 return "QD";
-            }
-            else if (cardSuit==3){
+            } else if (cardSuit == 3) {
                 return "QC";
-            }
-            else if (cardSuit==4){
+            } else if (cardSuit == 4) {
                 return "QS";
             }
-        }
-        else if (cardsNum==13){
-            if (cardSuit==1){
+        } else if (cardsNum == 13) {
+            if (cardSuit == 1) {
                 return "KH";
-            }
-            else if (cardSuit==2){
+            } else if (cardSuit == 2) {
                 return "KD";
-            }
-            else if (cardSuit==3){
+            } else if (cardSuit == 3) {
                 return "KC";
-            }
-            else if (cardSuit==4){
+            } else if (cardSuit == 4) {
                 return "KS";
             }
-        }
-        else if (cardsNum==14){
-            if (cardSuit==1){
+        } else if (cardsNum == 14) {
+            if (cardSuit == 1) {
                 return "AH";
-            }
-            else if (cardSuit==2){
+            } else if (cardSuit == 2) {
                 return "AD";
-            }
-            else if (cardSuit==3){
+            } else if (cardSuit == 3) {
                 return "AC";
-            }
-            else if (cardSuit==4){
+            } else if (cardSuit == 4) {
                 return "AS";
             }
         }
-        return  "";
+        return "";
     }
 
     public int compare_to(Poker_hand_hw2 otherHand) {
