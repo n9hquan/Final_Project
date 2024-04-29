@@ -63,7 +63,7 @@ public class Poker_hand_hw2 {
 
     }
 
-    public String get_category() {
+    public String get_category_strings() {
         // 9: Straight Flush
         if (cardsNum[0] == cardsNum[1] - 1 && cardsNum[1] == cardsNum[2] - 1 && cardsNum[2] == cardsNum[3] - 1
                 && cardsNum[3] == cardsNum[4] - 1 && cardsSuit[0] == cardsSuit[1] && cardsSuit[1] == cardsSuit[2]
@@ -107,8 +107,57 @@ public class Poker_hand_hw2 {
         }
         // 1: High card
         else {
-            String test = convert(cardsNum[4], cardsSuit[4]);
-            return "High card: " + test;
+            String temp = convert(cardsNum[4], cardsSuit[4]);
+            return "High card: " + temp;
+        }
+
+    }
+    @
+    public int get_category_int() {
+        // 9: Straight Flush
+        if (cardsNum[0] == cardsNum[1] - 1 && cardsNum[1] == cardsNum[2] - 1 && cardsNum[2] == cardsNum[3] - 1
+                && cardsNum[3] == cardsNum[4] - 1 && cardsSuit[0] == cardsSuit[1] && cardsSuit[1] == cardsSuit[2]
+                && cardsSuit[2] == cardsSuit[3] && cardsSuit[3] == cardsSuit[4]) {
+            return 9;
+        }
+        // 8: Four of a kind
+        else if (cardsNum[0] == cardsNum[1] && cardsNum[1] == cardsNum[2] && cardsNum[2] == cardsNum[3]
+                || cardsNum[1] == cardsNum[2] && cardsNum[2] == cardsNum[3] && cardsNum[3] == cardsNum[4]) {
+            return 8;
+        }
+        // 7: Full house
+        else if (cardsNum[0] == cardsNum[1] && cardsNum[1] == cardsNum[2] && cardsNum[3] == cardsNum[4]
+                || cardsNum[0] == cardsNum[1] && cardsNum[2] == cardsNum[3] && cardsNum[3] == cardsNum[4]) {
+            return 7;
+        }
+        // 6: Flush
+        else if (cardsSuit[0] == cardsSuit[1] && cardsSuit[1] == cardsSuit[2] && cardsSuit[2] == cardsSuit[3]
+                && cardsSuit[3] == cardsSuit[4]) {
+            return 6;
+        }
+        // 5: Straight
+        else if (cardsNum[0] == cardsNum[1] - 1 && cardsNum[1] == cardsNum[2] - 1 && cardsNum[2] == cardsNum[3] - 1
+                && cardsNum[3] == cardsNum[4] - 1) {
+            return 5;
+        }
+        // 4: Three of a kind
+        else if (cardsNum[0] == cardsNum[1] && cardsNum[1] == cardsNum[2] || cardsNum[1] == cardsNum[2]
+                && cardsNum[2] == cardsNum[3] || cardsNum[2] == cardsNum[3] && cardsNum[3] == cardsNum[4]) {
+            return 4;
+        }
+        // 3: Two pairs
+        else if (cardsNum[0] == cardsNum[1] && cardsNum[2] == cardsNum[3] || cardsNum[0] == cardsNum[1]
+                && cardsNum[3] == cardsNum[4] || cardsNum[1] == cardsNum[2] && cardsNum[3] == cardsNum[4]) {
+            return 3;
+        }
+        // 2: One pair
+        else if (cardsNum[0] == cardsNum[1] || cardsNum[1] == cardsNum[2] || cardsNum[2] == cardsNum[3]
+                || cardsNum[3] == cardsNum[4]) {
+            return 2;
+        }
+        // 1: High card
+        else {
+            return 1;
         }
 
     }
@@ -169,8 +218,8 @@ public class Poker_hand_hw2 {
     }
 
     public int compare_to(Poker_hand_hw2 otherHand) {
-        int get_category1 = this.get_category();
-        int get_category2 = otherHand.get_category();
+        int get_category1 = this.get_category_int();
+        int get_category2 = otherHand.get_category_int();
         int ans = 0;
         if (get_category1 > get_category2) {
             ans = 1;

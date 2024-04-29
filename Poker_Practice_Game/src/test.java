@@ -284,7 +284,7 @@ public class test {
                                         "Invalid Input", JOptionPane.INFORMATION_MESSAGE);
                                 break outerloop;
                             } else {
-                                System.out.println(left_hand.get_category());
+                                System.out.println(left_hand.get_category_strings());
                             }
                         }
                     }
@@ -337,7 +337,7 @@ public class test {
                                         "Invalid Input", JOptionPane.INFORMATION_MESSAGE);
                                 break outerloop;
                             } else {
-                                System.out.println(right_hand.get_category());
+                                System.out.println(right_hand.get_category_strings());
                             }
                         }
                     }
