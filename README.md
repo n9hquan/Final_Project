@@ -25,7 +25,7 @@ Welcome to Poker Hand Trainer, a fun and interactive game designed to help you m
 - **Self-paced Learning:** Play at your own pace, testing different hand combinations and refining your skills over time.
 
 ## Getting Started
-0
+
 This project is a simple desktop program running Java code. You can try it by downloading the project folder and simply clicking Run on your IDE. 
 
 Enjoy learning poker with Poker Hand Trainer!
