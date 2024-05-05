@@ -262,7 +262,32 @@ public class test {
                     String fifthleftcard = leftfifthTextfield.getText();
                     String[] leftDeck = { firstleftcard, secondleftcard, thirdleftcard, fourthleftcard, fifthleftcard };
                     Poker_hand_hw2 left_hand = new Poker_hand_hw2(leftDeck);
-                    System.out.println(left_hand.get_category_strings());
+                    outerloop: // nested loop break
+                    for (int i = 0; i < leftDeck.length; i++) {
+                        for (int j = i + 1; j < leftDeck.length; j++) {
+                            // Check if the inputs are cards
+                            if ((!leftDeck[i].matches("[2-9JQKA][HDCS]") && !leftDeck[i].matches("10[HDCS]"))
+                                    || (!leftDeck[j].matches("[2-9JQKA][HDCS]") && !leftDeck[j].matches("10[HDCS]"))) {
+                                JOptionPane.showMessageDialog(null, "Invalid card! Enter again.", "Invalid Input",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                                break outerloop;
+                            }
+                            // Check for enough inputs
+                            else if (leftDeck[i].equals("") || leftDeck[j].equals("")) {
+                                JOptionPane.showMessageDialog(null, "Not enough cards! Enter again.", "Invalid Input",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                                break outerloop;
+                            }
+                            // Check for duplicates
+                            else if (leftDeck[i].equals(leftDeck[j])) {
+                                JOptionPane.showMessageDialog(null, "Hand has duplicate cards! Enter again.",
+                                        "Invalid Input", JOptionPane.INFORMATION_MESSAGE);
+                                break outerloop;
+                            } else {
+                                System.out.println(left_hand.get_category_strings());
+                            }
+                        }
+                    }
                 }
             }
         });
