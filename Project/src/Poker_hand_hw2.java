@@ -1,7 +1,7 @@
 // package Homework.Homework1_2;
 // package com.gradescope.cs201;
 
-import javax.swing.JOptionPane;
+
 
 public class Poker_hand_hw2 {
 
@@ -13,28 +13,9 @@ public class Poker_hand_hw2 {
         if (cards.length != 5) {
             throw new IllegalArgumentException();
         }
-        outerloop: // nested loop break
-        for (int i = 0; i < cards.length; i++) {
-            for (int j = i + 1; j < cards.length; j++) {
-                                // Check for enough inputs
-                if (cards[i].equals("") || cards[j].equals("")) {
-                    JOptionPane.showMessageDialog(null, "Not enough cards! Enter again.", "Invalid Input",
-                            JOptionPane.INFORMATION_MESSAGE);
-                    break outerloop;
-                }
-                // Check if the inputs are cards
-                else if ((!cards[i].matches("[2-9JQKA][HDCS]") && !cards[i].matches("10[HDCS]"))
-                        || (!cards[j].matches("[2-9JQKA][HDCS]") && !cards[j].matches("10[HDCS]"))) {
-                    JOptionPane.showMessageDialog(null, "Invalid card! Enter again.", "Invalid Input",
-                            JOptionPane.INFORMATION_MESSAGE);
-                    break outerloop;
-                }
-                // Check for duplicates
-                else if (cards[i].equals(cards[j])) {
-                    JOptionPane.showMessageDialog(null, "Hand has duplicate cards! Enter again.",
-                            "Invalid Input", JOptionPane.INFORMATION_MESSAGE);
-                    break outerloop;
-                }
+        for (String card : cards) {
+            if (!card.matches("[2-9JQKA][HDCS]") && !card.matches("10[HDCS]")) {
+                throw new IllegalArgumentException("Invalid card");
             }
         }
         int tmp = 0;
@@ -84,7 +65,7 @@ public class Poker_hand_hw2 {
 
     }
 
-    public String get_category_strings() {
+    public String get_category() {
         // 9: Straight Flush
         if (cardsNum[0] == cardsNum[1] - 1 && cardsNum[1] == cardsNum[2] - 1 && cardsNum[2] == cardsNum[3] - 1
                 && cardsNum[3] == cardsNum[4] - 1 && cardsSuit[0] == cardsSuit[1] && cardsSuit[1] == cardsSuit[2]
@@ -128,119 +109,88 @@ public class Poker_hand_hw2 {
         }
         // 1: High card
         else {
-            String temp = convert(cardsNum[4], cardsSuit[4]);
-            return "High card: " + temp;
+            String test = convert(cardsNum[4],cardsSuit[4]);
+            return "High card: "+ test;
         }
 
     }
-
-    public int get_category_int() {
-        // 9: Straight Flush
-        if (cardsNum[0] == cardsNum[1] - 1 && cardsNum[1] == cardsNum[2] - 1 && cardsNum[2] == cardsNum[3] - 1
-                && cardsNum[3] == cardsNum[4] - 1 && cardsSuit[0] == cardsSuit[1] && cardsSuit[1] == cardsSuit[2]
-                && cardsSuit[2] == cardsSuit[3] && cardsSuit[3] == cardsSuit[4]) {
-            return 9;
-        }
-        // 8: Four of a kind
-        else if (cardsNum[0] == cardsNum[1] && cardsNum[1] == cardsNum[2] && cardsNum[2] == cardsNum[3]
-                || cardsNum[1] == cardsNum[2] && cardsNum[2] == cardsNum[3] && cardsNum[3] == cardsNum[4]) {
-            return 8;
-        }
-        // 7: Full house
-        else if (cardsNum[0] == cardsNum[1] && cardsNum[1] == cardsNum[2] && cardsNum[3] == cardsNum[4]
-                || cardsNum[0] == cardsNum[1] && cardsNum[2] == cardsNum[3] && cardsNum[3] == cardsNum[4]) {
-            return 7;
-        }
-        // 6: Flush
-        else if (cardsSuit[0] == cardsSuit[1] && cardsSuit[1] == cardsSuit[2] && cardsSuit[2] == cardsSuit[3]
-                && cardsSuit[3] == cardsSuit[4]) {
-            return 6;
-        }
-        // 5: Straight
-        else if (cardsNum[0] == cardsNum[1] - 1 && cardsNum[1] == cardsNum[2] - 1 && cardsNum[2] == cardsNum[3] - 1
-                && cardsNum[3] == cardsNum[4] - 1) {
-            return 5;
-        }
-        // 4: Three of a kind
-        else if (cardsNum[0] == cardsNum[1] && cardsNum[1] == cardsNum[2] || cardsNum[1] == cardsNum[2]
-                && cardsNum[2] == cardsNum[3] || cardsNum[2] == cardsNum[3] && cardsNum[3] == cardsNum[4]) {
-            return 4;
-        }
-        // 3: Two pairs
-        else if (cardsNum[0] == cardsNum[1] && cardsNum[2] == cardsNum[3] || cardsNum[0] == cardsNum[1]
-                && cardsNum[3] == cardsNum[4] || cardsNum[1] == cardsNum[2] && cardsNum[3] == cardsNum[4]) {
-            return 3;
-        }
-        // 2: One pair
-        else if (cardsNum[0] == cardsNum[1] || cardsNum[1] == cardsNum[2] || cardsNum[2] == cardsNum[3]
-                || cardsNum[3] == cardsNum[4]) {
-            return 2;
-        }
-        // 1: High card
-        else {
-            return 1;
-        }
-
-    }
-
-    public String convert(int cardsNum, int cardSuit) {
-        if (cardsNum < 11) {
-            if (cardSuit == 1) {
-                return String.valueOf(cardsNum) + "H";
-            } else if (cardSuit == 2) {
-                return String.valueOf(cardsNum) + "D";
-            } else if (cardSuit == 3) {
-                return String.valueOf(cardsNum) + "C";
-            } else if (cardSuit == 4) {
-                return String.valueOf(cardsNum) + "S";
+    public String convert(int cardsNum, int cardSuit){
+        if (cardsNum<11){
+            if (cardSuit==1){
+                return String.valueOf(cardsNum)+"H";
             }
-        } else if (cardsNum == 11) {
-            if (cardSuit == 1) {
+            else if (cardSuit==2){
+                return String.valueOf(cardsNum)+"D";
+            }
+            else if (cardSuit==3){
+                return String.valueOf(cardsNum)+"C";
+            }
+            else if (cardSuit==4){
+                return String.valueOf(cardsNum)+"S";
+            }
+        }
+        else if (cardsNum==11){
+            if (cardSuit==1){
                 return "JH";
-            } else if (cardSuit == 2) {
+            }
+            else if (cardSuit==2){
                 return "JD";
-            } else if (cardSuit == 3) {
+            }
+            else if (cardSuit==3){
                 return "JC";
-            } else if (cardSuit == 4) {
+            }
+            else if (cardSuit==4){
                 return "JS";
             }
-        } else if (cardsNum == 12) {
-            if (cardSuit == 1) {
+        }
+        else if (cardsNum==12){
+            if (cardSuit==1){
                 return "QH";
-            } else if (cardSuit == 2) {
+            }
+            else if (cardSuit==2){
                 return "QD";
-            } else if (cardSuit == 3) {
+            }
+            else if (cardSuit==3){
                 return "QC";
-            } else if (cardSuit == 4) {
+            }
+            else if (cardSuit==4){
                 return "QS";
             }
-        } else if (cardsNum == 13) {
-            if (cardSuit == 1) {
+        }
+        else if (cardsNum==13){
+            if (cardSuit==1){
                 return "KH";
-            } else if (cardSuit == 2) {
+            }
+            else if (cardSuit==2){
                 return "KD";
-            } else if (cardSuit == 3) {
+            }
+            else if (cardSuit==3){
                 return "KC";
-            } else if (cardSuit == 4) {
+            }
+            else if (cardSuit==4){
                 return "KS";
             }
-        } else if (cardsNum == 14) {
-            if (cardSuit == 1) {
+        }
+        else if (cardsNum==14){
+            if (cardSuit==1){
                 return "AH";
-            } else if (cardSuit == 2) {
+            }
+            else if (cardSuit==2){
                 return "AD";
-            } else if (cardSuit == 3) {
+            }
+            else if (cardSuit==3){
                 return "AC";
-            } else if (cardSuit == 4) {
+            }
+            else if (cardSuit==4){
                 return "AS";
             }
         }
-        return "";
+        return  "";
     }
 
     public int compare_to(Poker_hand_hw2 otherHand) {
-        int get_category1 = this.get_category_int();
-        int get_category2 = otherHand.get_category_int();
+        int get_category1 = this.get_category();
+        int get_category2 = otherHand.get_category();
         int ans = 0;
         if (get_category1 > get_category2) {
             ans = 1;
