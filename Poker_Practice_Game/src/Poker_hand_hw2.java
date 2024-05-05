@@ -134,6 +134,7 @@ public class Poker_hand_hw2 {
         }
 
     }
+
     public int get_category_int() {
         // 9: Straight Flush
         if (cardsNum[0] == cardsNum[1] - 1 && cardsNum[1] == cardsNum[2] - 1 && cardsNum[2] == cardsNum[3] - 1
