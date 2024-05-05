@@ -289,7 +289,33 @@ public class test {
                     String[] rightDeck = { firstrightcard, secondrightcard, thirdrightcard, fourthrightcard,
                             fifthrightcard };
                     Poker_hand_hw2 right_hand = new Poker_hand_hw2(rightDeck);
-                    System.out.println(right_hand.get_category_strings());
+                    outerloop: // nested loop break
+                    for (int i = 0; i < rightDeck.length; i++) {
+                        for (int j = i + 1; j < rightDeck.length; j++) {
+                            // Check if the inputs are cards
+                            if ((!rightDeck[i].matches("[2-9JQKA][HDCS]") && !rightDeck[i].matches("10[HDCS]"))
+                                    || (!rightDeck[j].matches("[2-9JQKA][HDCS]")
+                                            && !rightDeck[j].matches("10[HDCS]"))) {
+                                JOptionPane.showMessageDialog(null, "Invalid card! Enter again.", "Invalid Input",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                                break outerloop;
+                            }
+                            // Check for enough inputs
+                            else if (rightDeck[i].equals("") || rightDeck[j].equals("")) {
+                                JOptionPane.showMessageDialog(null, "Not enough cards! Enter again.", "Invalid Input",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                                break outerloop;
+                            }
+                            // Check for duplicates
+                            else if (rightDeck[i].equals(rightDeck[j])) {
+                                JOptionPane.showMessageDialog(null, "Hand has duplicate cards! Enter again.",
+                                        "Invalid Input", JOptionPane.INFORMATION_MESSAGE);
+                                break outerloop;
+                            } else {
+                                System.out.println(right_hand.get_category_strings());
+                            }
+                        }
+                    }
                 }
             }
         });
