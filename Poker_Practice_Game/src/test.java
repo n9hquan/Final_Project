@@ -262,32 +262,7 @@ public class test {
                     String fifthleftcard = leftfifthTextfield.getText();
                     String[] leftDeck = { firstleftcard, secondleftcard, thirdleftcard, fourthleftcard, fifthleftcard };
                     Poker_hand_hw2 left_hand = new Poker_hand_hw2(leftDeck);
-                    outerloop: // nested loop break
-                    for (int i = 0; i < leftDeck.length; i++) {
-                        for (int j = i + 1; j < leftDeck.length; j++) {
-                            // Check if the inputs are cards
-                            if ((!leftDeck[i].matches("[2-9JQKA][HDCS]") && !leftDeck[i].matches("10[HDCS]"))
-                                    || (!leftDeck[j].matches("[2-9JQKA][HDCS]") && !leftDeck[j].matches("10[HDCS]"))) {
-                                JOptionPane.showMessageDialog(null, "Invalid card! Enter again.", "Invalid Input",
-                                        JOptionPane.INFORMATION_MESSAGE);
-                                break outerloop;
-                            }
-                            // Check for enough inputs
-                            else if (leftDeck[i].equals("") || leftDeck[j].equals("")) {
-                                JOptionPane.showMessageDialog(null, "Not enough cards! Enter again.", "Invalid Input",
-                                        JOptionPane.INFORMATION_MESSAGE);
-                                break outerloop;
-                            }
-                            // Check for duplicates
-                            else if (leftDeck[i].equals(leftDeck[j])) {
-                                JOptionPane.showMessageDialog(null, "Hand has duplicate cards! Enter again.",
-                                        "Invalid Input", JOptionPane.INFORMATION_MESSAGE);
-                                break outerloop;
-                            } else {
-                                System.out.println(left_hand.get_category_strings());
-                            }
-                        }
-                    }
+                    System.out.println(left_hand.get_category_strings());
                 }
             }
         });
@@ -314,33 +289,7 @@ public class test {
                     String[] rightDeck = { firstrightcard, secondrightcard, thirdrightcard, fourthrightcard,
                             fifthrightcard };
                     Poker_hand_hw2 right_hand = new Poker_hand_hw2(rightDeck);
-                    outerloop: // nested loop break
-                    for (int i = 0; i < rightDeck.length; i++) {
-                        for (int j = i + 1; j < rightDeck.length; j++) {
-                            // Check if the inputs are cards
-                            if ((!rightDeck[i].matches("[2-9JQKA][HDCS]") && !rightDeck[i].matches("10[HDCS]"))
-                                    || (!rightDeck[j].matches("[2-9JQKA][HDCS]")
-                                            && !rightDeck[j].matches("10[HDCS]"))) {
-                                JOptionPane.showMessageDialog(null, "Invalid card! Enter again.", "Invalid Input",
-                                        JOptionPane.INFORMATION_MESSAGE);
-                                break outerloop;
-                            }
-                            // Check for enough inputs
-                            else if (rightDeck[i].equals("") || rightDeck[j].equals("")) {
-                                JOptionPane.showMessageDialog(null, "Not enough cards! Enter again.", "Invalid Input",
-                                        JOptionPane.INFORMATION_MESSAGE);
-                                break outerloop;
-                            }
-                            // Check for duplicates
-                            else if (rightDeck[i].equals(rightDeck[j])) {
-                                JOptionPane.showMessageDialog(null, "Hand has duplicate cards! Enter again.",
-                                        "Invalid Input", JOptionPane.INFORMATION_MESSAGE);
-                                break outerloop;
-                            } else {
-                                System.out.println(right_hand.get_category_strings());
-                            }
-                        }
-                    }
+                    System.out.println(right_hand.get_category_strings());
                 }
             }
         });
