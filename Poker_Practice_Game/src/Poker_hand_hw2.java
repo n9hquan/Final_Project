@@ -1,6 +1,8 @@
 // package Homework.Homework1_2;
 // package com.gradescope.cs201;
 
+import java.io.IOException;
+
 import javax.swing.JOptionPane;
 
 public class Poker_hand_hw2 {
@@ -13,30 +15,20 @@ public class Poker_hand_hw2 {
         if (cards.length != 5) {
             throw new IllegalArgumentException();
         }
+        try {
         outerloop: // nested loop break
         for (int i = 0; i < cards.length; i++) {
             for (int j = i + 1; j < cards.length; j++) {
-                // Check for enough inputs
-                if (cards[i].equals("") || cards[j].equals("")) {
-                    JOptionPane.showMessageDialog(null, "Not enough cards! Enter again.", "Invalid Input",
-                            JOptionPane.INFORMATION_MESSAGE);
-                    break outerloop;
-                }
-                // Check if the inputs are cards
-                else if ((!cards[i].matches("[2-9JQKA][HDCS]") && !cards[i].matches("10[HDCS]"))
-                        || (!cards[j].matches("[2-9JQKA][HDCS]")
-                                && !cards[j].matches("10[HDCS]"))) {
-                    JOptionPane.showMessageDialog(null, "Invalid card! Enter again.", "Invalid Input",
-                            JOptionPane.INFORMATION_MESSAGE);
-                    break outerloop;
-                }
                 // Check for duplicates
-                else if (cards[i].equals(cards[j])) {
+                if (cards[i].equals(cards[j])) {
                     JOptionPane.showMessageDialog(null, "Hand has duplicate cards! Enter again.",
                             "Invalid Input", JOptionPane.INFORMATION_MESSAGE);
                     break outerloop;
+                    }
                 }
             }
+        } catch (IllegalArgumentException e){
+            System.out.println();
         }
         int tmp = 0;
         int temp;
