@@ -1,5 +1,8 @@
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -7,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import java.awt.BorderLayout;
@@ -17,34 +21,29 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.MediaTracker;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+import java.util.concurrent.Flow;
 import java.util.jar.JarEntry;
 
 public class test {
+    private static ImageIcon resizeImage(ImageIcon originalIcon, int width, int height) {
+        Image image = originalIcon.getImage();
+        Image resizedImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        return new ImageIcon(resizedImage);
+    }
     public static void main(String[] args) {
-        int width = 1280;
-        int height = 720;
-        ImageIcon titleIcon = new ImageIcon("game_logo.jpg");
-        JButton compareButton = new JButton();
-        // compareButton.setPreferredSize(new Dimension(200,90));
-        compareButton.setBorder(BorderFactory.createEtchedBorder());
-        compareButton.setText("Compare Hands");
-        compareButton.setFont(new Font("Inter", Font.BOLD, 15));
-        int buttonWidth = 80;
-        int buttonHeight = 20;
-        compareButton.setBounds(
-                new Rectangle((width - buttonWidth) / 2, (height - buttonHeight) / 2, buttonWidth, buttonHeight));
-        compareButton.setSize(new Dimension(buttonWidth, buttonHeight));
-        compareButton.setFocusable(false);
-        // JPanel leftPanel = new JPanel();
-        // leftPanel.setBackground(Color.BLUE);
-        // leftPanel.add(compareButton);
 
-        // * Start from here
+        ImageIcon titleIcon = new ImageIcon("game_logo.jpg");
+
         // Label for hand 1
         JLabel leftLabel = new JLabel();
         leftLabel.setText("Hand 1");
@@ -62,8 +61,10 @@ public class test {
         // Create Panels
         JPanel mainPanel = new JPanel(new BorderLayout());
 
-        JPanel centerPanel = new JPanel(new GridBagLayout());
-        centerPanel.setBackground(Color.BLUE);
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+        centerPanel.add(Box.createVerticalGlue());
+        centerPanel.setBackground(Color.BLACK);
         JPanel leftPanel = new JPanel(new BorderLayout());
         leftPanel.setBackground(Color.RED);
         leftPanel.setPreferredSize(new Dimension(575, 575));
@@ -76,24 +77,23 @@ public class test {
         JPanel toprightPanel = new JPanel(new GridBagLayout());
         toprightPanel.setPreferredSize(new Dimension(100, 100));
         toprightPanel.setBackground(Color.BLACK);
-        // GridBagConstraints constraints = new GridBagConstraints();
 
         JPanel secondleftPanel = new JPanel(new BorderLayout());
         secondleftPanel.setPreferredSize(new Dimension(100, 100));
-        JPanel topsecondleftPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 50, 10));
+        JPanel topsecondleftPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 60, 40));
         topsecondleftPanel.setPreferredSize(new Dimension(100, 100));
         topsecondleftPanel.setBackground(Color.BLACK);
 
         JPanel thirdleftPanel = new JPanel(new BorderLayout());
         thirdleftPanel.setPreferredSize(new Dimension(100, 100));
-        JPanel topthirdleftPanel = new JPanel();
+        JPanel topthirdleftPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 70));
         topthirdleftPanel.setPreferredSize(new Dimension(300, 300));
         topthirdleftPanel.setBackground(Color.BLACK);
 
         JPanel fourthleftPanel = new JPanel(new BorderLayout());
-        fourthleftPanel.setPreferredSize(new Dimension(50, 50));
-        JPanel topfourthleftPanel = new JPanel();
-        topfourthleftPanel.setPreferredSize(new Dimension(50, 50));
+        fourthleftPanel.setPreferredSize(new Dimension(80, 80));
+        JPanel topfourthleftPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
+        topfourthleftPanel.setPreferredSize(new Dimension(80, 80));
         topfourthleftPanel.setBackground(Color.BLACK);
 
         JPanel fifthleftPanel = new JPanel();
@@ -103,25 +103,98 @@ public class test {
         // Create right Panels
         JPanel secondrightPanel = new JPanel(new BorderLayout());
         secondrightPanel.setPreferredSize(new Dimension(100, 100));
-        JPanel topsecondrightPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 50, 10));
+        JPanel topsecondrightPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 60, 40));
         topsecondrightPanel.setPreferredSize(new Dimension(100, 100));
         topsecondrightPanel.setBackground(Color.BLACK);
 
         JPanel thirdrightPanel = new JPanel(new BorderLayout());
         thirdrightPanel.setPreferredSize(new Dimension(100, 100));
-        JPanel topthirdrightPanel = new JPanel();
+        JPanel topthirdrightPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 70));
         topthirdrightPanel.setPreferredSize(new Dimension(300, 300));
         topthirdrightPanel.setBackground(Color.BLACK);
 
         JPanel fourthrightPanel = new JPanel(new BorderLayout());
-        fourthrightPanel.setPreferredSize(new Dimension(50, 50));
-        JPanel topfourthrightPanel = new JPanel();
-        topfourthrightPanel.setPreferredSize(new Dimension(50, 50));
+        fourthrightPanel.setPreferredSize(new Dimension(80,80));
+        JPanel topfourthrightPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
+        topfourthrightPanel.setPreferredSize(new Dimension(80, 80));
         topfourthrightPanel.setBackground(Color.BLACK);
 
         JPanel fifthrightPanel = new JPanel();
         fifthrightPanel.setPreferredSize(new Dimension(100, 100));
         fifthrightPanel.setBackground(Color.BLACK);
+
+        // Create Left side Cardholders
+        ImageIcon card_placeholder = new ImageIcon("D:\\Fulbright\\Year2\\CS201\\Final_Project\\Poker_Practice_Game\\src\\52_cards\\card_placeholder.png");
+        ImageIcon resizedIcon = resizeImage(card_placeholder, 100,140);
+        JLabel leftfirstLabel = new JLabel(resizedIcon);
+        leftfirstLabel.setPreferredSize(new Dimension(100,140));
+        JLabel leftsecondLabel = new JLabel(resizedIcon);
+        leftsecondLabel.setPreferredSize(new Dimension(100,140));
+        JLabel leftthirdLabel = new JLabel(resizedIcon);
+        leftthirdLabel.setPreferredSize(new Dimension(100,140));
+        JLabel leftfourthLabel = new JLabel(resizedIcon);
+        leftfourthLabel.setPreferredSize(new Dimension(100,140));
+        JLabel leftfifthLabel = new JLabel(resizedIcon);
+        leftfifthLabel.setPreferredSize(new Dimension(100,140));
+
+        // Create Right side Cardholders
+        JLabel rightfirstLabel = new JLabel(resizedIcon);
+        leftfirstLabel.setPreferredSize(new Dimension(100,140));
+        JLabel rightsecondLabel = new JLabel(resizedIcon);
+        leftsecondLabel.setPreferredSize(new Dimension(100,140));
+        JLabel rightthirdLabel = new JLabel(resizedIcon);
+        leftthirdLabel.setPreferredSize(new Dimension(100,140));
+        JLabel rightfourthLabel = new JLabel(resizedIcon);
+        leftfourthLabel.setPreferredSize(new Dimension(100,140));
+        JLabel rightfifthLabel = new JLabel(resizedIcon);
+        leftfifthLabel.setPreferredSize(new Dimension(100,140));
+
+        // Information box for check category left
+        JLabel leftCheckCategory = new JLabel();
+        leftCheckCategory.setPreferredSize(new Dimension(500, 40));
+        leftCheckCategory.setOpaque(true);
+        leftCheckCategory.setBorder(BorderFactory.createEtchedBorder());
+        leftCheckCategory.setBackground(new Color(196,196,196));
+        leftCheckCategory.setForeground(Color.BLACK);
+        leftCheckCategory.setHorizontalAlignment(JLabel.CENTER);
+        leftCheckCategory.setFont(new Font("Inter", Font.BOLD, 15));
+
+        // Information box for check category right
+        JLabel rightCheckCategory = new JLabel();
+        rightCheckCategory.setPreferredSize(new Dimension(500, 40));
+        rightCheckCategory.setOpaque(true);
+        rightCheckCategory.setBorder(BorderFactory.createEtchedBorder());
+        rightCheckCategory.setBackground(new Color(196,196,196));
+        rightCheckCategory.setForeground(Color.BLACK);
+        rightCheckCategory.setHorizontalAlignment(JLabel.CENTER);
+        rightCheckCategory.setFont(new Font("Inter", Font.BOLD, 15));
+
+        // Compare Hands button
+        JButton compareButton = new JButton("Compare");
+        compareButton.setPreferredSize(new Dimension(80, 30));
+        compareButton.setMaximumSize(compareButton.getPreferredSize());
+        compareButton.setFont(new Font("Inter", Font.PLAIN, 15));
+        compareButton.setFocusable(false);
+        compareButton.setFocusPainted(false);
+        compareButton.setBackground(new Color(24, 160, 251));
+        compareButton.setForeground(Color.WHITE);
+        compareButton.setBorder(BorderFactory.createEmptyBorder());
+        compareButton.setAlignmentX(JPanel.CENTER_ALIGNMENT);
+        
+
+        // Information box for comparing 2 hands
+        JLabel compareHandsBox = new JLabel();
+        compareHandsBox.setPreferredSize(new Dimension(150, 60));
+        compareHandsBox.setMaximumSize(compareHandsBox.getPreferredSize());
+        compareHandsBox.setOpaque(true);
+        compareHandsBox.setBorder(BorderFactory.createEtchedBorder());
+        compareHandsBox.setBackground(new Color(196,196,196));
+        compareHandsBox.setForeground(Color.BLACK);
+        compareHandsBox.setHorizontalAlignment(JLabel.CENTER);
+        compareHandsBox.setVerticalAlignment(JLabel.CENTER);
+        compareHandsBox.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+        compareHandsBox.setFont(new Font("Inter", Font.BOLD, 15));
+        
 
         // Create Text Field Left side
         JTextField leftfirstTextfield = new JTextField();
@@ -178,32 +251,109 @@ public class test {
         // Get input through ENTER and the cursor jumps to the next Text field left side
         leftfirstTextfield.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    leftsecondTextfield.requestFocusInWindow();
+                if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_TAB) {
+                    try {
+                        ImageIcon firstCard = new ImageIcon("D:\\\\Fulbright\\\\Year2\\\\CS201\\\\Final_Project\\\\Poker_Practice_Game\\\\src\\\\52_cards\\\\" + leftfirstTextfield.getText().toUpperCase().trim() + ".png");
+                        if (firstCard.getImageLoadStatus() != MediaTracker.COMPLETE){
+                            leftCheckCategory.setText(null);
+                            JOptionPane.showMessageDialog(null, "Card image not found!", "Error", JOptionPane.ERROR_MESSAGE);
+                            leftfirstLabel.setIcon(resizedIcon);
+                        }
+                        else {
+                            ImageIcon firstIcon = resizeImage(firstCard, 100,140);
+                            leftfirstLabel.setIcon(firstIcon);
+                            leftsecondTextfield.requestFocusInWindow();
+                        }
+                    } catch (Exception E){
+                        JOptionPane.showMessageDialog(null, "An error occurred: " + E.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         });
 
         leftsecondTextfield.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    leftthirdTextfield.requestFocusInWindow();
+                if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_TAB) {
+                    try {
+                        ImageIcon secondCard = new ImageIcon("D:\\\\Fulbright\\\\Year2\\\\CS201\\\\Final_Project\\\\Poker_Practice_Game\\\\src\\\\52_cards\\\\" + leftsecondTextfield.getText().toUpperCase().trim() + ".png");
+                        if (secondCard.getImageLoadStatus() != MediaTracker.COMPLETE){
+                            leftCheckCategory.setText(null);
+                            JOptionPane.showMessageDialog(null, "Card image not found!", "Error", JOptionPane.ERROR_MESSAGE);
+                            leftsecondLabel.setIcon(resizedIcon);
+                        }
+                        else {
+                            ImageIcon secondIcon = resizeImage(secondCard, 100,140);
+                            leftsecondLabel.setIcon(secondIcon);
+                            leftthirdTextfield.requestFocusInWindow();
+                        }
+                    } catch (Exception E){
+                        JOptionPane.showMessageDialog(null, "An error occurred: " + E.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         });
 
         leftthirdTextfield.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    leftfourthTextfield.requestFocusInWindow();
+                if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_TAB) {
+                    try {
+                        ImageIcon thirdCard = new ImageIcon("D:\\\\Fulbright\\\\Year2\\\\CS201\\\\Final_Project\\\\Poker_Practice_Game\\\\src\\\\52_cards\\\\" + leftthirdTextfield.getText().toUpperCase().trim() + ".png");
+                        if (thirdCard.getImageLoadStatus() != MediaTracker.COMPLETE){
+                            leftCheckCategory.setText(null);
+                            JOptionPane.showMessageDialog(null, "Card image not found!", "Error", JOptionPane.ERROR_MESSAGE);
+                            leftthirdLabel.setIcon(resizedIcon);
+                        }
+                        else {
+                            ImageIcon thirdIcon = resizeImage(thirdCard, 100,140);
+                            leftthirdLabel.setIcon(thirdIcon);
+                            leftfourthTextfield.requestFocusInWindow();
+                        }
+                    } catch (Exception E){
+                        JOptionPane.showMessageDialog(null, "An error occurred: " + E.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         });
 
         leftfourthTextfield.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    leftfifthTextfield.requestFocusInWindow();
+                if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_TAB) {
+                    try {
+                        ImageIcon fourthCard = new ImageIcon("D:\\\\Fulbright\\\\Year2\\\\CS201\\\\Final_Project\\\\Poker_Practice_Game\\\\src\\\\52_cards\\\\" + leftfourthTextfield.getText().toUpperCase().trim() + ".png");
+                        if (fourthCard.getImageLoadStatus() != MediaTracker.COMPLETE){
+                            leftCheckCategory.setText(null);
+                            JOptionPane.showMessageDialog(null, "Card image not found!", "Error", JOptionPane.ERROR_MESSAGE);
+                            leftfourthLabel.setIcon(resizedIcon);
+                        }
+                        else {
+                            ImageIcon fourthIcon = resizeImage(fourthCard, 100,140);
+                            leftfourthLabel.setIcon(fourthIcon);
+                            leftfifthTextfield.requestFocusInWindow();
+                        }
+                    } catch (Exception E){
+                        JOptionPane.showMessageDialog(null, "An error occurred: " + E.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        });
+
+        leftfifthTextfield.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_TAB) {
+                    try {
+                        ImageIcon fifthCard = new ImageIcon("D:\\\\Fulbright\\\\Year2\\\\CS201\\\\Final_Project\\\\Poker_Practice_Game\\\\src\\\\52_cards\\\\" + leftfifthTextfield.getText().toUpperCase().trim() + ".png");
+                        if (fifthCard.getImageLoadStatus() != MediaTracker.COMPLETE){
+                            leftCheckCategory.setText(null);
+                            JOptionPane.showMessageDialog(null, "Card image not found!", "Error", JOptionPane.ERROR_MESSAGE);
+                            leftfifthLabel.setIcon(resizedIcon);
+                        }
+                        else {
+                            ImageIcon fifthIcon = resizeImage(fifthCard, 100,140);
+                            leftfifthLabel.setIcon(fifthIcon);
+                        }
+                    } catch (Exception E){
+                        JOptionPane.showMessageDialog(null, "An error occurred: " + E.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         });
@@ -212,32 +362,109 @@ public class test {
         // side
         rightfirstTextfield.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    rightsecondTextfield.requestFocusInWindow();
+                if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_TAB) {
+                    try {
+                        ImageIcon sixthCard = new ImageIcon("D:\\\\Fulbright\\\\Year2\\\\CS201\\\\Final_Project\\\\Poker_Practice_Game\\\\src\\\\52_cards\\\\" + rightfirstTextfield.getText().toUpperCase().trim() + ".png");
+                        if (sixthCard.getImageLoadStatus() != MediaTracker.COMPLETE){
+                            rightCheckCategory.setText(null);
+                            JOptionPane.showMessageDialog(null, "Card image not found!", "Error", JOptionPane.ERROR_MESSAGE);
+                            rightfirstLabel.setIcon(resizedIcon);
+                        }
+                        else {
+                            ImageIcon sixthIcon = resizeImage(sixthCard, 100,140);
+                            rightfirstLabel.setIcon(sixthIcon);
+                            rightsecondTextfield.requestFocusInWindow();
+                        }
+                    } catch (Exception E){
+                        JOptionPane.showMessageDialog(null, "An error occurred: " + E.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         });
 
         rightsecondTextfield.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    rightthirdTextfield.requestFocusInWindow();
+                if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_TAB) {
+                    try {
+                        ImageIcon seventhCard = new ImageIcon("D:\\\\Fulbright\\\\Year2\\\\CS201\\\\Final_Project\\\\Poker_Practice_Game\\\\src\\\\52_cards\\\\" + rightsecondTextfield.getText().toUpperCase().trim() + ".png");
+                        if (seventhCard.getImageLoadStatus() != MediaTracker.COMPLETE){
+                            rightCheckCategory.setText(null);
+                            JOptionPane.showMessageDialog(null, "Card image not found!", "Error", JOptionPane.ERROR_MESSAGE);
+                            rightsecondLabel.setIcon(resizedIcon);
+                        }
+                        else {
+                            ImageIcon seventhIcon = resizeImage(seventhCard, 100,140);
+                            rightsecondLabel.setIcon(seventhIcon);
+                            rightthirdTextfield.requestFocusInWindow();
+                        }
+                    } catch (Exception E){
+                        JOptionPane.showMessageDialog(null, "An error occurred: " + E.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         });
 
         rightthirdTextfield.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    rightfourthTextfield.requestFocusInWindow();
+                if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_TAB) {
+                    try {
+                        ImageIcon eighthCard = new ImageIcon("D:\\\\Fulbright\\\\Year2\\\\CS201\\\\Final_Project\\\\Poker_Practice_Game\\\\src\\\\52_cards\\\\" + rightthirdTextfield.getText().toUpperCase().trim() + ".png");
+                        if (eighthCard.getImageLoadStatus() != MediaTracker.COMPLETE){
+                            rightCheckCategory.setText(null);
+                            JOptionPane.showMessageDialog(null, "Card image not found!", "Error", JOptionPane.ERROR_MESSAGE);
+                            rightthirdLabel.setIcon(resizedIcon);
+                        }
+                        else {
+                            ImageIcon eighthIcon = resizeImage(eighthCard, 100,140);
+                            rightthirdLabel.setIcon(eighthIcon);
+                            rightfourthTextfield.requestFocusInWindow();
+                        }
+                    } catch (Exception E){
+                        JOptionPane.showMessageDialog(null, "An error occurred: " + E.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         });
 
         rightfourthTextfield.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    rightfifthTextfield.requestFocusInWindow();
+                if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_TAB) {
+                    try {
+                        ImageIcon ninthCard = new ImageIcon("D:\\\\Fulbright\\\\Year2\\\\CS201\\\\Final_Project\\\\Poker_Practice_Game\\\\src\\\\52_cards\\\\" + rightfourthTextfield.getText().toUpperCase().trim() + ".png");
+                        if (ninthCard.getImageLoadStatus() != MediaTracker.COMPLETE){
+                            rightCheckCategory.setText(null);
+                            JOptionPane.showMessageDialog(null, "Card image not found!", "Error", JOptionPane.ERROR_MESSAGE);
+                            rightfourthLabel.setIcon(resizedIcon);
+                        }
+                        else {
+                            ImageIcon ninthIcon = resizeImage(ninthCard, 100,140);
+                            rightfourthLabel.setIcon(ninthIcon);
+                            rightfifthTextfield.requestFocusInWindow();
+                        }
+                    } catch (Exception E){
+                        JOptionPane.showMessageDialog(null, "An error occurred: " + E.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        });
+
+        rightfifthTextfield.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_TAB) {
+                    try {
+                        ImageIcon tenthCard = new ImageIcon("D:\\\\Fulbright\\\\Year2\\\\CS201\\\\Final_Project\\\\Poker_Practice_Game\\\\src\\\\52_cards\\\\" + rightfifthTextfield.getText().toUpperCase().trim() + ".png");
+                        if (tenthCard.getImageLoadStatus() != MediaTracker.COMPLETE){
+                            rightCheckCategory.setText(null);
+                            JOptionPane.showMessageDialog(null, "Card image not found!", "Error", JOptionPane.ERROR_MESSAGE);
+                            rightfifthLabel.setIcon(resizedIcon);
+                        }
+                        else {
+                            ImageIcon tenthIcon = resizeImage(tenthCard, 100,140);
+                            rightfifthLabel.setIcon(tenthIcon);
+                        }
+                    } catch (Exception E){
+                        JOptionPane.showMessageDialog(null, "An error occurred: " + E.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         });
@@ -255,14 +482,25 @@ public class test {
         leftButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == leftButton) {
-                    String firstleftcard = leftfirstTextfield.getText();
-                    String secondleftcard = leftsecondTextfield.getText();
-                    String thirdleftcard = leftthirdTextfield.getText();
-                    String fourthleftcard = leftfourthTextfield.getText();
-                    String fifthleftcard = leftfifthTextfield.getText();
+                    String firstleftcard = leftfirstTextfield.getText().toUpperCase().trim();
+                    String secondleftcard = leftsecondTextfield.getText().toUpperCase().trim();
+                    String thirdleftcard = leftthirdTextfield.getText().toUpperCase().trim();
+                    String fourthleftcard = leftfourthTextfield.getText().toUpperCase().trim();
+                    String fifthleftcard = leftfifthTextfield.getText().toUpperCase().trim();
                     String[] leftDeck = { firstleftcard, secondleftcard, thirdleftcard, fourthleftcard, fifthleftcard };
-                    Poker_hand_hw2 left_hand = new Poker_hand_hw2(leftDeck);
-                    System.out.println(left_hand.get_category_strings());
+                    boolean isValid = true;
+                    for (String card : leftDeck){
+                        if (!(card.matches("[2-9JQKA][HDCS]") || card.matches("10[HDCS]"))) {
+                            leftCheckCategory.setText(null);
+                            JOptionPane.showMessageDialog(null, "Invalid or missing card information!", "Error", JOptionPane.ERROR_MESSAGE);
+                            isValid = false;
+                            break;
+                        }
+                    }
+                    if (isValid){
+                        Poker_hand_hw2 left_hand = new Poker_hand_hw2(leftDeck);
+                        leftCheckCategory.setText(left_hand.get_category_strings());
+                    }
                 }
             }
         });
@@ -281,15 +519,27 @@ public class test {
         rightButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == rightButton) {
-                    String firstrightcard = rightfirstTextfield.getText();
-                    String secondrightcard = rightsecondTextfield.getText();
-                    String thirdrightcard = rightthirdTextfield.getText();
-                    String fourthrightcard = rightfourthTextfield.getText();
-                    String fifthrightcard = rightfifthTextfield.getText();
+                    String firstrightcard = rightfirstTextfield.getText().toUpperCase().trim();
+                    String secondrightcard = rightsecondTextfield.getText().toUpperCase().trim();
+                    String thirdrightcard = rightthirdTextfield.getText().toUpperCase().trim();
+                    String fourthrightcard = rightfourthTextfield.getText().toUpperCase().trim();
+                    String fifthrightcard = rightfifthTextfield.getText().toUpperCase().trim();
                     String[] rightDeck = { firstrightcard, secondrightcard, thirdrightcard, fourthrightcard,
                             fifthrightcard };
-                    Poker_hand_hw2 right_hand = new Poker_hand_hw2(rightDeck);
-                    System.out.println(right_hand.get_category_strings());
+                    // Check if enough inputs or valid card information
+                    boolean isValid = true;
+                    for (String card : rightDeck){
+                        if (!(card.matches("[2-9JQKA][HDCS]") || card.matches("10[HDCS]"))) {
+                            rightCheckCategory.setText(null);
+                            JOptionPane.showMessageDialog(null, "Invalid or missing card information!", "Error", JOptionPane.ERROR_MESSAGE);
+                            isValid = false;
+                            break;
+                        }
+                    }
+                    if (isValid){
+                        Poker_hand_hw2 right_hand = new Poker_hand_hw2(rightDeck);
+                        rightCheckCategory.setText(right_hand.get_category_strings());
+                    }
                 }
             }
         });
@@ -312,6 +562,7 @@ public class test {
         frame.add(mainPanel);
         mainPanel.add(leftPanel, BorderLayout.WEST);
         mainPanel.add(rightPanel, BorderLayout.EAST);
+        mainPanel.add(centerPanel, BorderLayout.CENTER);
         leftPanel.add(topleftPanel, BorderLayout.NORTH);
         rightPanel.add(toprightPanel, BorderLayout.NORTH);
         topleftPanel.add(leftLabel);
@@ -343,5 +594,63 @@ public class test {
         topsecondrightPanel.add(rightthirdTextfield);
         topsecondrightPanel.add(rightfourthTextfield);
         topsecondrightPanel.add(rightfifthTextfield);
+
+        topthirdleftPanel.add(leftfirstLabel);
+        topthirdleftPanel.add(leftsecondLabel);
+        topthirdleftPanel.add(leftthirdLabel);
+        topthirdleftPanel.add(leftfourthLabel);
+        topthirdleftPanel.add(leftfifthLabel);
+
+        topthirdrightPanel.add(rightfirstLabel);
+        topthirdrightPanel.add(rightsecondLabel);
+        topthirdrightPanel.add(rightthirdLabel);
+        topthirdrightPanel.add(rightfourthLabel);
+        topthirdrightPanel.add(rightfifthLabel);
+
+        topfourthleftPanel.add(leftCheckCategory);
+        topfourthrightPanel.add(rightCheckCategory);
+        centerPanel.add(compareHandsBox);
+        centerPanel.add(Box.createRigidArea(new Dimension(0,20)));
+        centerPanel.add(compareButton);
+        centerPanel.add(Box.createVerticalGlue());
+        centerPanel.revalidate();
+
+        compareButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String leftCategory = leftCheckCategory.getText();
+                String rightCategory = rightCheckCategory.getText();
+                if (leftCategory.isEmpty() || rightCategory.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Both hands must be categorized before comparing.", "Incomplete Data", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    String firstleftcard = leftfirstTextfield.getText().toUpperCase().trim();
+                    String secondleftcard = leftsecondTextfield.getText().toUpperCase().trim();
+                    String thirdleftcard = leftthirdTextfield.getText().toUpperCase().trim();
+                    String fourthleftcard = leftfourthTextfield.getText().toUpperCase().trim();
+                    String fifthleftcard = leftfifthTextfield.getText().toUpperCase().trim();
+                    String[] leftDeck = { firstleftcard, secondleftcard, thirdleftcard, fourthleftcard, fifthleftcard };
+                    Poker_hand_hw2 left_hand = new Poker_hand_hw2(leftDeck);
+                    String firstrightcard = rightfirstTextfield.getText().toUpperCase().trim();
+                    String secondrightcard = rightsecondTextfield.getText().toUpperCase().trim();
+                    String thirdrightcard = rightthirdTextfield.getText().toUpperCase().trim();
+                    String fourthrightcard = rightfourthTextfield.getText().toUpperCase().trim();
+                    String fifthrightcard = rightfifthTextfield.getText().toUpperCase().trim();
+                    String[] rightDeck = { firstrightcard, secondrightcard, thirdrightcard, fourthrightcard,
+                            fifthrightcard };
+                    Poker_hand_hw2 right_hand = new Poker_hand_hw2(rightDeck);
+                    // Compare
+                    int output = left_hand.compare_to(right_hand);
+                    if (output == 1){
+                        compareHandsBox.setText("<html>is ranked<br/>higher than</html>");
+                    }
+                    else if (output == -1){
+                        compareHandsBox.setText("<html>is ranked<br/>lower than</html>");
+                    }
+                    else{
+                        compareHandsBox.setText("<html>is ranked<br/>equal to</html>");
+                    }
+                }
+            }
+        });
     }
 }
