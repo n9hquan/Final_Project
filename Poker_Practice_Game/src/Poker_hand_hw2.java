@@ -16,17 +16,7 @@ public class Poker_hand_hw2 {
             throw new IllegalArgumentException();
         }
         try {
-        outerloop: // nested loop break
-        for (int i = 0; i < cards.length; i++) {
-            for (int j = i + 1; j < cards.length; j++) {
-                // Check for duplicates
-                if (cards[i].equals(cards[j])) {
-                    JOptionPane.showMessageDialog(null, "Hand has duplicate cards! Enter again.",
-                            "Invalid Input", JOptionPane.INFORMATION_MESSAGE);
-                    break outerloop;
-                    }
-                }
-            }
+        
         } catch (IllegalArgumentException e){
             System.out.println();
         }
