@@ -1,5 +1,3 @@
-
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -10,31 +8,20 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.border.LineBorder;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.MediaTracker;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
 
-import java.util.jar.JarEntry;
-
-public class test {
+public class Poker_Game {
     private static ImageIcon resizeImage(ImageIcon originalIcon, int width, int height) {
         Image image = originalIcon.getImage();
         Image resizedImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
@@ -522,10 +509,24 @@ public class test {
                     for (String card : leftDeck) {
                         if (!(card.matches("[2-9JQKA][HDCS]") || card.matches("10[HDCS]"))) {
                             leftCheckCategory.setText(null);
-                            JOptionPane.showMessageDialog(null, "Invalid or missing card information!", "Error",
+                            JOptionPane.showMessageDialog(null, "Missing card information!", "Error",
                                     JOptionPane.ERROR_MESSAGE);
                             isValid = false;
                             break;
+                        }
+                    }
+                    if (isValid){
+                        outerloop: // nested loop break
+                        for (int i = 0; i < leftDeck.length; i++) {
+                            for (int j = i + 1; j < leftDeck.length; j++) {
+                                // Check for duplicates
+                                if (leftDeck[i].equals(leftDeck[j])) {
+                                    JOptionPane.showMessageDialog(null, "Hand has duplicate cards! Enter again.",
+                                            "Invalid Input", JOptionPane.INFORMATION_MESSAGE);
+                                    isValid = false;
+                                    break outerloop;
+                                }
+                            }
                         }
                     }
                     if (isValid) {
@@ -562,10 +563,24 @@ public class test {
                     for (String card : rightDeck) {
                         if (!(card.matches("[2-9JQKA][HDCS]") || card.matches("10[HDCS]"))) {
                             rightCheckCategory.setText(null);
-                            JOptionPane.showMessageDialog(null, "Invalid or missing card information!", "Error",
+                            JOptionPane.showMessageDialog(null, "Missing card information!", "Error",
                                     JOptionPane.ERROR_MESSAGE);
                             isValid = false;
                             break;
+                        }
+                    }
+                    if (isValid){
+                        outerloop: // nested loop break
+                        for (int i = 0; i < rightDeck.length; i++) {
+                            for (int j = i + 1; j <rightDeck.length; j++) {
+                                // Check for duplicates
+                                if (rightDeck[i].equals(rightDeck[j])) {
+                                    JOptionPane.showMessageDialog(null, "Hand has duplicate cards! Enter again.",
+                                            "Invalid Input", JOptionPane.INFORMATION_MESSAGE);
+                                    isValid = false;
+                                    break outerloop;
+                                }
+                            }
                         }
                     }
                     if (isValid) {

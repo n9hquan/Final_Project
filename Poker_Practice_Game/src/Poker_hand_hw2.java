@@ -1,10 +1,3 @@
-// package Homework.Homework1_2;
-// package com.gradescope.cs201;
-
-import java.io.IOException;
-
-import javax.swing.JOptionPane;
-
 public class Poker_hand_hw2 {
 
     private int[] cardsNum = new int[5];
@@ -14,21 +7,6 @@ public class Poker_hand_hw2 {
     public Poker_hand_hw2(String[] cards) {
         if (cards.length != 5) {
             throw new IllegalArgumentException();
-        }
-        try {
-        outerloop: // nested loop break
-        for (int i = 0; i < cards.length; i++) {
-            for (int j = i + 1; j < cards.length; j++) {
-                // Check for duplicates
-                if (cards[i].equals(cards[j])) {
-                    JOptionPane.showMessageDialog(null, "Hand has duplicate cards! Enter again.",
-                            "Invalid Input", JOptionPane.INFORMATION_MESSAGE);
-                    break outerloop;
-                    }
-                }
-            }
-        } catch (IllegalArgumentException e){
-            System.out.println();
         }
         int tmp = 0;
         int temp;
