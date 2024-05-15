@@ -34,7 +34,7 @@ import java.net.URL;
 import java.util.concurrent.Flow;
 import java.util.jar.JarEntry;
 
-public class test {
+public class Poker_Game {
     private static ImageIcon resizeImage(ImageIcon originalIcon, int width, int height) {
         Image image = originalIcon.getImage();
         Image resizedImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
@@ -124,7 +124,7 @@ public class test {
         fifthrightPanel.setBackground(Color.BLACK);
 
         // Create Left side Cardholders
-        ImageIcon card_placeholder = new ImageIcon("D:\\Fulbright\\Year2\\CS201\\Final_Project\\Poker_Practice_Game\\src\\52_cards\\card_placeholder.png");
+        ImageIcon card_placeholder = new ImageIcon("Poker_Practice_Game\\lib\\52_cards\\card_placeholder.png");
         ImageIcon resizedIcon = resizeImage(card_placeholder, 100,140);
         JLabel leftfirstLabel = new JLabel(resizedIcon);
         leftfirstLabel.setPreferredSize(new Dimension(100,140));
@@ -253,7 +253,7 @@ public class test {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_TAB) {
                     try {
-                        ImageIcon firstCard = new ImageIcon("D:\\\\Fulbright\\\\Year2\\\\CS201\\\\Final_Project\\\\Poker_Practice_Game\\\\src\\\\52_cards\\\\" + leftfirstTextfield.getText().toUpperCase().trim() + ".png");
+                        ImageIcon firstCard = new ImageIcon("Poker_Practice_Game\\lib\\52_cards\\" + leftfirstTextfield.getText().toUpperCase().trim() + ".png");
                         if (firstCard.getImageLoadStatus() != MediaTracker.COMPLETE){
                             leftCheckCategory.setText(null);
                             JOptionPane.showMessageDialog(null, "Card image not found!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -275,7 +275,7 @@ public class test {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_TAB) {
                     try {
-                        ImageIcon secondCard = new ImageIcon("D:\\\\Fulbright\\\\Year2\\\\CS201\\\\Final_Project\\\\Poker_Practice_Game\\\\src\\\\52_cards\\\\" + leftsecondTextfield.getText().toUpperCase().trim() + ".png");
+                        ImageIcon secondCard = new ImageIcon("Poker_Practice_Game\\lib\\52_cards\\" + leftsecondTextfield.getText().toUpperCase().trim() + ".png");
                         if (secondCard.getImageLoadStatus() != MediaTracker.COMPLETE){
                             leftCheckCategory.setText(null);
                             JOptionPane.showMessageDialog(null, "Card image not found!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -297,7 +297,7 @@ public class test {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_TAB) {
                     try {
-                        ImageIcon thirdCard = new ImageIcon("D:\\\\Fulbright\\\\Year2\\\\CS201\\\\Final_Project\\\\Poker_Practice_Game\\\\src\\\\52_cards\\\\" + leftthirdTextfield.getText().toUpperCase().trim() + ".png");
+                        ImageIcon thirdCard = new ImageIcon("Poker_Practice_Game\\lib\\52_cards\\" + leftthirdTextfield.getText().toUpperCase().trim() + ".png");
                         if (thirdCard.getImageLoadStatus() != MediaTracker.COMPLETE){
                             leftCheckCategory.setText(null);
                             JOptionPane.showMessageDialog(null, "Card image not found!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -319,7 +319,7 @@ public class test {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_TAB) {
                     try {
-                        ImageIcon fourthCard = new ImageIcon("D:\\\\Fulbright\\\\Year2\\\\CS201\\\\Final_Project\\\\Poker_Practice_Game\\\\src\\\\52_cards\\\\" + leftfourthTextfield.getText().toUpperCase().trim() + ".png");
+                        ImageIcon fourthCard = new ImageIcon("Poker_Practice_Game\\lib\\52_cards\\" + leftfourthTextfield.getText().toUpperCase().trim() + ".png");
                         if (fourthCard.getImageLoadStatus() != MediaTracker.COMPLETE){
                             leftCheckCategory.setText(null);
                             JOptionPane.showMessageDialog(null, "Card image not found!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -341,7 +341,7 @@ public class test {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_TAB) {
                     try {
-                        ImageIcon fifthCard = new ImageIcon("D:\\\\Fulbright\\\\Year2\\\\CS201\\\\Final_Project\\\\Poker_Practice_Game\\\\src\\\\52_cards\\\\" + leftfifthTextfield.getText().toUpperCase().trim() + ".png");
+                        ImageIcon fifthCard = new ImageIcon("Poker_Practice_Game\\lib\\52_cards\\" + leftfifthTextfield.getText().toUpperCase().trim() + ".png");
                         if (fifthCard.getImageLoadStatus() != MediaTracker.COMPLETE){
                             leftCheckCategory.setText(null);
                             JOptionPane.showMessageDialog(null, "Card image not found!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -364,7 +364,7 @@ public class test {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_TAB) {
                     try {
-                        ImageIcon sixthCard = new ImageIcon("D:\\\\Fulbright\\\\Year2\\\\CS201\\\\Final_Project\\\\Poker_Practice_Game\\\\src\\\\52_cards\\\\" + rightfirstTextfield.getText().toUpperCase().trim() + ".png");
+                        ImageIcon sixthCard = new ImageIcon("Poker_Practice_Game\\lib\\52_cards\\" + rightfirstTextfield.getText().toUpperCase().trim() + ".png");
                         if (sixthCard.getImageLoadStatus() != MediaTracker.COMPLETE){
                             rightCheckCategory.setText(null);
                             JOptionPane.showMessageDialog(null, "Card image not found!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -386,7 +386,7 @@ public class test {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_TAB) {
                     try {
-                        ImageIcon seventhCard = new ImageIcon("D:\\\\Fulbright\\\\Year2\\\\CS201\\\\Final_Project\\\\Poker_Practice_Game\\\\src\\\\52_cards\\\\" + rightsecondTextfield.getText().toUpperCase().trim() + ".png");
+                        ImageIcon seventhCard = new ImageIcon("Poker_Practice_Game\\lib\\52_cards\\" + rightsecondTextfield.getText().toUpperCase().trim() + ".png");
                         if (seventhCard.getImageLoadStatus() != MediaTracker.COMPLETE){
                             rightCheckCategory.setText(null);
                             JOptionPane.showMessageDialog(null, "Card image not found!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -408,7 +408,7 @@ public class test {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_TAB) {
                     try {
-                        ImageIcon eighthCard = new ImageIcon("D:\\\\Fulbright\\\\Year2\\\\CS201\\\\Final_Project\\\\Poker_Practice_Game\\\\src\\\\52_cards\\\\" + rightthirdTextfield.getText().toUpperCase().trim() + ".png");
+                        ImageIcon eighthCard = new ImageIcon("Poker_Practice_Game\\lib\\52_cards\\" + rightthirdTextfield.getText().toUpperCase().trim() + ".png");
                         if (eighthCard.getImageLoadStatus() != MediaTracker.COMPLETE){
                             rightCheckCategory.setText(null);
                             JOptionPane.showMessageDialog(null, "Card image not found!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -430,7 +430,7 @@ public class test {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_TAB) {
                     try {
-                        ImageIcon ninthCard = new ImageIcon("D:\\\\Fulbright\\\\Year2\\\\CS201\\\\Final_Project\\\\Poker_Practice_Game\\\\src\\\\52_cards\\\\" + rightfourthTextfield.getText().toUpperCase().trim() + ".png");
+                        ImageIcon ninthCard = new ImageIcon("Poker_Practice_Game\\lib\\52_cards\\" + rightfourthTextfield.getText().toUpperCase().trim() + ".png");
                         if (ninthCard.getImageLoadStatus() != MediaTracker.COMPLETE){
                             rightCheckCategory.setText(null);
                             JOptionPane.showMessageDialog(null, "Card image not found!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -452,7 +452,7 @@ public class test {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_TAB) {
                     try {
-                        ImageIcon tenthCard = new ImageIcon("D:\\\\Fulbright\\\\Year2\\\\CS201\\\\Final_Project\\\\Poker_Practice_Game\\\\src\\\\52_cards\\\\" + rightfifthTextfield.getText().toUpperCase().trim() + ".png");
+                        ImageIcon tenthCard = new ImageIcon("Poker_Practice_Game\\lib\\52_cards\\" + rightfifthTextfield.getText().toUpperCase().trim() + ".png");
                         if (tenthCard.getImageLoadStatus() != MediaTracker.COMPLETE){
                             rightCheckCategory.setText(null);
                             JOptionPane.showMessageDialog(null, "Card image not found!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -492,9 +492,21 @@ public class test {
                     for (String card : leftDeck){
                         if (!(card.matches("[2-9JQKA][HDCS]") || card.matches("10[HDCS]"))) {
                             leftCheckCategory.setText(null);
-                            JOptionPane.showMessageDialog(null, "Invalid or missing card information!", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Missing card information!", "Error", JOptionPane.ERROR_MESSAGE);
                             isValid = false;
                             break;
+                        }
+                    }
+                    outerloop: // nested loop break
+                    for (int i = 0; i < leftDeck.length; i++) {
+                        for (int j = i + 1; j < leftDeck.length; j++) {
+                            // Check for duplicates
+                            if (leftDeck[i].equals(leftDeck[j])) {
+                                JOptionPane.showMessageDialog(null, "Hand has duplicate cards! Enter again.",
+                                        "Invalid Input", JOptionPane.INFORMATION_MESSAGE);
+                                isValid = false;
+                                break outerloop;
+                            }
                         }
                     }
                     if (isValid){
@@ -531,9 +543,21 @@ public class test {
                     for (String card : rightDeck){
                         if (!(card.matches("[2-9JQKA][HDCS]") || card.matches("10[HDCS]"))) {
                             rightCheckCategory.setText(null);
-                            JOptionPane.showMessageDialog(null, "Invalid or missing card information!", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Missing card information!", "Error", JOptionPane.ERROR_MESSAGE);
                             isValid = false;
                             break;
+                        }
+                    }
+                    outerloop: // nested loop break
+                    for (int i = 0; i < rightDeck.length; i++) {
+                        for (int j = i + 1; j < rightDeck.length; j++) {
+                            // Check for duplicates
+                            if (rightDeck[i].equals(rightDeck[j])) {
+                                JOptionPane.showMessageDialog(null, "Hand has duplicate cards! Enter again.",
+                                        "Invalid Input", JOptionPane.INFORMATION_MESSAGE);
+                                isValid = false;
+                                break outerloop;
+                            }
                         }
                     }
                     if (isValid){
