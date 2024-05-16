@@ -30,7 +30,7 @@ public class Poker_Game {
 
     public static void main(String[] args) {
 
-        ImageIcon titleIcon = new ImageIcon("game_logo.jpg");
+        ImageIcon titleIcon = new ImageIcon("Poker_Practice_Game\\lib\\game_logo.jpg");
 
         // Label for hand 1
         JLabel leftLabel = new JLabel();
